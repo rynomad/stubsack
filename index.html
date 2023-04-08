@@ -1,112 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StubSack</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f5f5f5;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+      }
 
-        .container {
-            text-align: center;
-        }
+      .container {
+        text-align: center;
+      }
 
-        input {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 1em;
-        }
+      input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1em;
+      }
 
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #2d89ef;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #2d89ef;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        button:hover {
-            background-color: #1d4fbd;
-        }
+      button:hover {
+        background-color: #1d4fbd;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .hidden {
+        display: none;
+      }
 
-        ol {
-            width: 80%;
-            margin: 20px auto;
-            text-align: left;
-        }
+      ol {
+        width: 80%;
+        margin: 20px auto;
+        text-align: left;
+      }
     </style>
     <script>
-        window.onload = function() {
-            const hash = window.location.hash.substr(1);
-            if (hash) {
-                const decodedUrl = atob(hash);
-                window.location.href = decodedUrl;
+      window.onload = function () {
+        const hash = window.location.hash.substr(1);
+        if (hash) {
+          const decodedUrl = atob(hash);
+          window.location.href = decodedUrl;
+        }
+
+        const copyButton = document.getElementById("copy-button");
+        copyButton.addEventListener("click", function () {
+          const inputField = document.getElementById("url-input");
+          const encodedInput = btoa(inputField.value);
+          const newUrl =
+            window.location.href.split("#")[0] + "#" + encodedInput;
+          navigator.clipboard.writeText(newUrl).then(
+            function () {
+              alert("URL copied to clipboard");
+            },
+            function (err) {
+              console.error("Could not copy URL: ", err);
             }
+          );
+        });
+      };
 
-            const copyButton = document.getElementById('copy-button');
-            copyButton.addEventListener('click', function() {
-                const inputField = document.getElementById('url-input');
-                const encodedInput = btoa(inputField.value);
-                const newUrl = window.location.href.split('#')[0] + '#' + encodedInput;
-                navigator.clipboard.writeText(newUrl).then(function() {
-                    alert('URL copied to clipboard');
-                }, function(err) {
-                    console.error('Could not copy URL: ', err);
-                });
-            });
-        }
-
-        function toggleInstructions() {
-            const instructions = document.getElementById('instructions');
-            instructions.classList.toggle('hidden');
-        }
+      function toggleInstructions() {
+        const instructions = document.getElementById("instructions");
+        instructions.classList.toggle("hidden");
+      }
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>StubSack</h1>
-        <input type="text" id="url-input" placeholder="Enter your URL here">
-        <button id="copy-button">Copy</button>
-        <p>Learn more about <a href="https://example.com" target="_blank">StubSack</a> or <a href="#"
-                id="show-instructions" onclick="toggleInstructions(); return false;">make your own</a>.</p>
-        <div id="instructions" class="hidden">
-            <ol>
-                <li>Visit the <a href="https://github.com/rynomad/stubsack" target="_blank">StubSack repository</a> on
-                    GitHub.</li>
-                <li>Sign in to your GitHub account or <a href="https://github.com/join" target="_blank">create a new
-                        one</a> if you don't have one already.</li>
-                <li>Click the "Fork" button in the top-right corner of the StubSack repository page. This will create a
-                    copy of the repository under your GitHub account.</li>
-                <li>Go to your forked repository's main page. It should have a URL like
-                    "https://github.com/YourUsername/stubsack".</li>
-                            <li>Click the "Settings" tab on your repository page, scroll down to the "GitHub Pages" section, and choose "main" for
-                                the "Source" option. The page will automatically refresh, and your GitHub Pages site will be live at the provided
-                                URL, e.g., "https://YourUsername.github.io/stubsack".</li>
-                            <li>(Optional) To change the name of your repository and get a different URL path, click the "Settings" tab on your
-                                repository page again, locate the "Repository name" section, and enter a new name for your repository. Click
-                                "Rename" to save your changes. Your GitHub Pages URL will now be updated to
-                                "https://YourUsername.github.io/NewRepositoryName".</li>
-                            </ol>
-                            </div>
-                            </div>
-                            </body>
-                            
-                            </html>
+      <h1>StubSack</h1>
+      <input type="text" id="url-input" placeholder="Enter your URL here" />
+      <button id="copy-button">Copy</button>
+      <p>
+        Learn more about
+        <a href="https://example.com" target="_blank">StubSack</a> or
+        <a
+          href="#"
+          id="show-instructions"
+          onclick="toggleInstructions(); return false;"
+          >make your own</a
+        >.
+      </p>
+      <div id="instructions" class="hidden">
+        <ol>
+          <li>Sign up or log in to your GitHub account.</li>
+          <li>
+            Visit the StubSack repository at
+            <a href="https://github.com/rynomad/stubsack" target="_blank"
+              >https://github.com/rynomad/stubsack</a
+            >.
+          </li>
+          <li>
+            Click the "Fork" button in the top-right corner of the repository
+            page. This will create a copy of the repository under your GitHub
+            account.
+          </li>
+          <li>
+            Go to the settings page of the forked repository
+            (https://github.com/your-username/stubsack/settings).
+          </li>
+          <li>Scroll down to the "GitHub Pages" section.</li>
+          <li>
+            In the "Source" dropdown, select the "main" branch and save the
+            changes.
+          </li>
+          <li>
+            Your forked StubSack page will now be live at
+            https://your-username.github.io/stubsack.
+          </li>
+          <p>
+            <em
+              >(Optional) To change the name of the repo and create a different
+              URL path:</em
+            >
+          </p>
+          <li>In the forked repository, go to the "Settings" tab.</li>
+          <li>Under "Repository name", enter a new name for the repository.</li>
+          <li>Click "Rename" to confirm the change.</li>
+          <li>
+            Your forked StubSack page will now be live at
+            https://your-username.github.io/new-repo-name.
+          </li>
+        </ol>
+        <p>
+          Remember that it might take a few minutes for the changes to propagate
+          and your site to become available.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
