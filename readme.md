@@ -8,7 +8,7 @@ Visit the live demo at [https://rynomad.github.io/stubsack](https://rynomad.gith
 
 ## Announcement
 
-Read the blog post announcing StubSack and learn about why it was created [here](https://placeholder-url.com/essay).
+Read the blog post announcing StubSack and learn about why it was created [here](https://ryanisms.substack.com/p/introducing-stubsack).
 
 ## How to Use StubSack
 
